@@ -1,5 +1,13 @@
 # Battleship
 
+![start](printscreen/start.png)
+
+![setup](printscreen/setup.png)
+
+![game](printscreen/game.png)
+
+![won](printscreen/won.png)
+
 ## Story
 
 > One of the reasons microcomputers progressed so fast is people are willing to
