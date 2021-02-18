@@ -1,0 +1,105 @@
+import sys
+import string
+import os
+BLUE = "\033[0;34;1m"
+GREEN = "\033[1;32m"
+END = "\033[0m"
+
+
+# function for collecting data from user
+def player_input(text):
+    player_text = input(text)
+    if player_text[0].lower() == "q":
+        sys.exit("You quit the game")
+    return player_text
+
+
+# function for initializing board used in game
+def init_board(size):
+    board = []
+    for i in range(0,size):
+        board.append([0]*size)
+    print(board)
+    return board
+
+<<<<<<< HEAD
+board = init_board(5)
+# function for printing empty board
+def print_board(board):
+=======
+
+# function that prepares content of board for printing
+def prepare_board_for_printing(board,color):
+>>>>>>> f1178d593abeff2c191145a3099e99dd0beb050b
+    column_name_list = [number for number in range(1,len(board)+1)]
+    row_name_list = list(string.ascii_uppercase[:len(board)])
+    
+    column_name_row =" "*5
+    for column in column_name_list:
+        column_name_row += f"{column} "
+    
+    board_content = {"heading_row" : f"{color}{column_name_row}{END}" }      
+    for i in range(len(board)):
+        row_content = f"  {color}{row_name_list[i]}{END}  "
+        for j in range(len(board)):
+            row_content += f"{board[i][j]} "
+        board_content[i] = row_content
+
+    return board_content
+
+
+#function for printing 1 or 2 boards            
+def print_two_boards(board,color,board2="",color2=""):  # jako parametr board2 True?
+    board1_dict = prepare_board_for_printing(board,color)
+    if board2 != "":
+        board2_dict = prepare_board_for_printing(board2,color2)
+        print(board1_dict["heading_row"]," "*7,board2_dict["heading_row"])
+        for i in range(len(board)):
+            print(board1_dict[i]," "*7,board2_dict[i])
+    else:        
+        print(board1_dict["heading_row"])
+        for i in range(len(board)):
+            print(board1_dict[i])
+               
+            
+
+print_board(board)
+# function which returns the coordinates of a valid move for player on board
+def get_move(board):
+    row, col = 100, 100
+
+    # keep asking as long as row, col are invalid
+    while row == 100 or col == 100:
+        user_input = input("\nSpecify coordinates of your move on board: ")
+
+        # user can write only 2 signs - letters and numbers
+        if len(user_input) != 2 or not user_input.isalnum():
+            print("Invalid input!")
+            continue
+        else:
+            # decode input into coordinates
+            for sign in user_input:
+                unicode = ord(sign.lower())
+                if sign.isalpha():
+                    row = unicode - 97
+                    continue
+                elif sign.isdigit():
+                    col = unicode - 49
+                    continue
+            # check if coordinates are on board
+            try:
+                board[row][col]
+                return row, col
+            except IndexError:
+                print("Invalid input!")
+                row, col = 100, 100
+                continue
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    pass
