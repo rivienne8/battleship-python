@@ -1,5 +1,7 @@
 # Battleship
 
+_Project developed in June 2020 by Ewa Żeleńska-Olczak and Joanna Rzeszótko-Doniec. (Codecool course)_ 
+
 ![start](printscreen/start.png)
 
 ![setup](printscreen/setup.png)
